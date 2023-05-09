@@ -1,9 +1,15 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const mysql = require('mysql2');
+const fs = require('fs')
 
-const sequelize = new Sequelize('pki-jwt', 'postgres', 'admin', {
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres'
+const sequelize = new Sequelize('pki-cloud', 'pkicloud', 'zaq1@WSX', {
+    host: 'pki-cloud.mysql.database.azure.com',
+    dialect: 'mysql',
+    dialectOptions: {
+        ssl: {
+            ca: fs.readFileSync('./DigiCertGlobalRootCA.crt')
+        }
+    }
 });
 
 const Users = sequelize.define('users', {

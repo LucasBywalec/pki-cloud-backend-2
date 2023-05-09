@@ -15,9 +15,10 @@
     "jade": "~1.11.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1",
+    "mysql2": "^3.3.0",
     "node-cron": "^3.0.2",
     "pg": "^8.10.0",
     "pg-promise": "^11.4.3",
-    "sequelize": "^6.31.0"
+    "sequelize": "^6.31.1"
   }
 }
