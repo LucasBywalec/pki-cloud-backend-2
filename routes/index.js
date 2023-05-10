@@ -22,9 +22,9 @@ router.get('/auth/google', async (req, res) => {
 
     console.log(authCode);
 
-    const { id_token, access_token } = await googleAuthToken(authCode);
+    const { token, access_token } = await googleAuthToken(authCode);
 
-    console.log(id_token);
+    console.log(token);
 
     const { name, email } = await googleUser(
       id_token,
