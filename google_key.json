@@ -1,0 +1,21 @@
+{
+    "web":
+    {
+        "client_id":"69235085526-s200ufrat924dmbrs4356m8mbfhs7ulk.apps.googleusercontent.com",
+        "project_id":"dominica-358318",
+        "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+        "token_uri":"https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret":"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",
+        "redirect_uris":
+            [
+            "https://pki-cloud-backend.azurewebsites.net/auth/google/callback",
+            "http://localhost:5173/auth/google/callback"
+            ]
+        ,"javascript_origins"
+        :[
+            "https://pki-cloud-backend.azurewebsites.net",
+            "http://localhost:5173"
+        ]
+    }
+}
