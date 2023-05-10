@@ -20,7 +20,7 @@ setInterval(database.deleteInactiveUsers, 30000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors({origin: '*'}));
+app.use(cors({origin: 'https://pki-cloud-front.vercel.app'}));
 
 app.use(logger('dev'));
 app.use(express.json());

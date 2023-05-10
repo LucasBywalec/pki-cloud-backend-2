@@ -26,7 +26,6 @@ async function googleUser(idToken, accessToken) {
   
 
 const googleAuthToken = async (code) => {
-  const rootUrl = 'https://oauth2.googleapis.com/token';
   const options = {
     code,
     client_id: CLIENT_ID,
@@ -35,7 +34,7 @@ const googleAuthToken = async (code) => {
     grant_type: 'authorization_code'
   };
 
-  const response = await fetch(rootUrl, {
+  const response = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
