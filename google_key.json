@@ -8,15 +8,15 @@
         "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
         "client_secret":"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",
         "redirect_uris":
-            [
-                "https://pki-cloud-front.vercel.app/google"
-            ]
-        ,"javascript_origins":
-            [
+        [
+            "https://pki-cloud-front.vercel.app/google"
+        ],
+        "javascript_origins":
+        [
             "https://pki-cloud-backend.azurewebsites.net",
             "http://localhost:5173",
             "http://localhost:3000",
             "https://pki-cloud-front.vercel.app"
             ]
+        }
     }
-}
