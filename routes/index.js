@@ -20,12 +20,18 @@ router.get('/auth/google', async (req, res) => {
       res.send("No auth!")
     }
 
+    console.log(authCode);
+
     const { id_token, access_token } = await googleAuthToken(authCode);
 
-    const { name, verified_email, email } = await googleUser(
+    console.log(id_token);
+
+    const { name, email } = await googleUser(
       id_token,
       access_token
     );
+
+    console.log(email)
 
     const user = database.getUserIdByEmail(email)
     if(user == null){
