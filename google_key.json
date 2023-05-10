@@ -9,13 +9,12 @@
         "client_secret":"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",
         "redirect_uris":
             [
-            "https://pki-cloud-backend.azurewebsites.net/auth/google/callback",
-            "http://localhost:5173/auth/google/callback"
+            "https://pki-cloud-front-pt4p238mc-lucasbywalec.vercel.app/base"
             ]
-        ,"javascript_origins"
-        :[
+        ,"javascript_origins":
+            [
             "https://pki-cloud-backend.azurewebsites.net",
             "http://localhost:5173"
-        ]
+            ]
     }
 }

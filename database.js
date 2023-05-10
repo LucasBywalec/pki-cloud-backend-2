@@ -28,7 +28,7 @@ email: {
 },
 password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
 },
 roleId: {
     type: DataTypes.INTEGER,
@@ -38,6 +38,10 @@ isActive: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: false
+},
+provider: {
+    type: DataTypes.STRING,
+    allowNull: true
 }
 });
 
@@ -105,9 +109,9 @@ module.exports = {
             return false;
         }
     },
-    createUser: async (givenEmail, givenUsername, givenPassword) => {
+    createUser: async (givenEmail, givenUsername, givenPassword, givenProvider) => {
         try{
-            Users.create({username: givenUsername, email: givenEmail, password: givenPassword, roleId: 2})
+            Users.create({username: givenUsername, email: givenEmail, password: givenPassword, roleId: 2, provider: givenProvider})
             return true;
         } catch(error){
             console.log(`Error while creating user ${error}`);
