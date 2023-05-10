@@ -9,7 +9,7 @@
         "client_secret":"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",
         "redirect_uris":
             [
-            "https://pki-cloud-front-pt4p238mc-lucasbywalec.vercel.app/base"
+                "https://pki-cloud-front.vercel.app/google"
             ]
         ,"javascript_origins":
             [
