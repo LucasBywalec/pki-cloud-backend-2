@@ -1,11 +1,13 @@
 let express = require('express');
-let database = require('../database.js')
+let database = require('./../database.js')
 let router = express.Router();
 const { check, body } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const { google } = require('googleapis');
 const { googleAuthToken, googleUser } = require('../googleAuth.js');
 
+
+console.log("dwadwadwa ", database.createFromSchemas)
 
 
 router.get('/', function(req, res, next) {
@@ -22,23 +24,22 @@ router.get('/auth/google', async (req, res) => {
 
     console.log(authCode);
 
-    const { token, access_token } = await googleAuthToken(authCode);
-
-    console.log(token);
+    const { id_token, access_token } = await googleAuthToken(authCode);
 
     const { name, email } = await googleUser(
       id_token,
       access_token
     );
 
-    console.log(email)
-
-    const user = database.getUserIdByEmail(email)
-    if(user == null){
-      const success = database.createUser(email, name, null, 'google');
-      if(success){
-        const data = {id: await database.getUserIdByEmail(email)};
-        const token = jwt.sign(data, "rsa", {expiresIn: "1h"});
+    const user = await database.getUserIdByEmail(email)
+    console.log("user:", user)
+    if(user === null){
+      const data = await database.createUser(email, name, null, 'google');
+      console.log("create:", data)
+      if(data){
+        console.log("data:", data.id)
+        const token = jwt.sign({id: data.id}, "rsa", {expiresIn: "1h"});
+        console.log(token)
         return res.status(200).send({
           message: 'Signed in',
           token
@@ -63,7 +64,9 @@ router.post('/auth/signin', async (req, res, next) => {
     return res.status(422).send({error: 'account with such email or password doesn\'t exist or is not activated yet'})
   }
   const data = {id: await database.getUserIdByEmail(req.body.email)};
+  console.log(data)
   const token = jwt.sign(data, "rsa", {expiresIn: "1h"});
+  console.log(token)
 
   return res.status(200).send({
     message: 'Signed in',

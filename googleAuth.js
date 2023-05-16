@@ -14,9 +14,9 @@ async function googleUser(idToken, accessToken) {
         }
       }
     );
-  
+
     const result = await response.json();
-  
+
     if (response.status === 200) {
       return result;
     }
@@ -43,7 +43,7 @@ const googleAuthToken = async (code) => {
   });
 
   const result = await response.json();
-  
+
   if (response.status === 200) {
     return result;
   }

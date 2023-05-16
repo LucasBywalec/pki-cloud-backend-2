@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const mysql = require('mysql2');
-const fs = require('fs')
+const fs = require('fs');
 
 const sequelize = new Sequelize('pki-cloud', 'pkicloud', 'zaq1@WSX', {
     host: 'pki-cloud.mysql.database.azure.com',
@@ -20,7 +20,7 @@ id: {
 },
 username: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
 },
 email: {
     type: DataTypes.STRING,
@@ -37,7 +37,7 @@ roleId: {
 isActive: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-    defaultValue: false
+    defaultValue: true
 },
 provider: {
     type: DataTypes.STRING,
@@ -111,8 +111,15 @@ module.exports = {
     },
     createUser: async (givenEmail, givenUsername, givenPassword, givenProvider) => {
         try{
-            Users.create({username: givenUsername, email: givenEmail, password: givenPassword, roleId: 2, provider: givenProvider})
-            return true;
+            const user = {username: givenUsername, email: givenEmail, password: givenPassword, roleId: 2, provider: givenProvider};
+            console.log("user database: ", user);
+            await Users.create(user);
+            const find = await Users.findOne({
+                where: {
+                    email: user.email
+                }
+            })
+            return find;
         } catch(error){
             console.log(`Error while creating user ${error}`);
             return false;
@@ -136,13 +143,17 @@ module.exports = {
         }
     },
     getUserIdByEmail: async (givenEmail) => {
+        console.log("givenEmail ", givenEmail);
         try {
             const user = await Users.findOne({
                 where: {
                     email: givenEmail
                 }
             })
-            if(user) return JSON.parse(user.id);
+            console.log("gówno: ", user)
+            if(user){
+                return JSON.parse(user.id);
+            }
             
             return null;
         } catch(error){

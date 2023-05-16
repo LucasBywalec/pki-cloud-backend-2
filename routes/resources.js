@@ -24,7 +24,7 @@ router.get('/user', async (req, res, next) => {
 
         const data = await database.getPrivateResources(await database.getUserRoleById(decoded.id));
 
-        if(data == null){
+        if(data === null){
             return res.status(403).send({error: 'access denied'});
         }
 

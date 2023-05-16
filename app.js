@@ -14,13 +14,13 @@ let app = express();
 
 database.createFromSchemas();
 
-setInterval(database.deleteInactiveUsers, 30000);
+setInterval(database.deleteInactiveUsers, 300000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors({origin: 'https://pki-cloud-front.vercel.app'}));
+app.use(cors('*'));
 
 app.use(logger('dev'));
 app.use(express.json());
