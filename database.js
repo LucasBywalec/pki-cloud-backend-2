@@ -196,7 +196,7 @@ module.exports = {
     changeStatusById: async (givenId) => {
         try {
             Users.update(
-                    {isActive: Sequelize.literal('NOT "isActive"')},
+                    {isActive: Sequelize.literal('NOT isActive')},
                     {where: {id: givenId}}
             )
         } catch(error){
@@ -215,6 +215,7 @@ module.exports = {
         return (await DatasourcePrivate.findAll());
     },
     getAdminResources: async (givenRole) => {
+        console.log(`givenRole: ${givenRole}`)
         if(givenRole != 'admin'){
             return null;
         }

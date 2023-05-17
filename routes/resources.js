@@ -67,6 +67,8 @@ router.get('/admin', async (req, res, next) => {
 
         const data = await database.getAdminResources(await database.getUserRoleById(decoded.id));
 
+        console.log("Data: ", data)
+
         if(data == null){
             return res.status(403).send({message: 'access denied'});
         }
@@ -95,6 +97,10 @@ router.get('/getUsers', async (req, res, next) => {
           return res.status(422).send({ error: error });
         }
 
+        const role = await database.getUserRoleById(decoded.id)
+        if(role != 'admin'){
+            return res.status(403).send('access denied')
+        }
         const data = await database.getAllUsers();
 
         return res.status(200).send(data);

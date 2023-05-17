@@ -17,9 +17,7 @@ async function googleUser(idToken, accessToken) {
 
     const result = await response.json();
 
-    if (response.status === 200) {
-      return result;
-    }
+    return result;
   }
   
   exports.googleUser = googleUser;
@@ -44,9 +42,7 @@ const googleAuthToken = async (code) => {
 
   const result = await response.json();
 
-  if (response.status === 200) {
-    return result;
-  }
+  return result;
 };
 
 exports.googleAuthToken = googleAuthToken;
