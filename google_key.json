@@ -13,7 +13,7 @@
         ],
         "javascript_origins":
         [
-            "https://pki-cloud-backend.azurewebsites.net",
+            "https://pki-cloud-backend-2.azurewebsites.net",
             "http://localhost:5173",
             "http://localhost:3000",
             "https://pki-cloud-front.vercel.app"
